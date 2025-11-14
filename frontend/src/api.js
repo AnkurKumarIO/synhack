@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.https://vnit-hostel-grievances-1-o.onrender.com,  // <--- BASE URL HERE
+  baseURL: process.env.REACT_APP_API_URL,  // ✅ use the env variable
 });
 
 // Automatically attach JWT
