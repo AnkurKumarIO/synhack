@@ -9,16 +9,25 @@ load_dotenv()
 # Create Flask app
 app = Flask(__name__)
 
-# Configure CORS to allow frontend requests
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["https://vnit-hostel-grievances-36cw.vercel.app/"],
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "expose_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True
-    }
-})
+from flask import Flask
+from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Create Flask app
+app = Flask(__name__)
+
+# Allowed origins
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # local frontend
+    "https://vnit-hostel-grievances-36cw.vercel.app"  # deployed frontend
+]
+
+# Configure CORS
+CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGINS}}, supports_credentials=True)
 
 # Import routes
 from app.routes import auth, complaints, admin, worker
