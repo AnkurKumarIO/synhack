@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Configure CORS to allow frontend requests
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["https://vnit-hostel-grievances.vercel.app"],
+        "origins": ["https://vnit-hostel-grievances-36cw.vercel.app/"],
         "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
         "expose_headers": ["Content-Type", "Authorization"],
