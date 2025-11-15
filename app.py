@@ -9,27 +9,20 @@ load_dotenv()
 # Create Flask app
 app = Flask(__name__)
 
-from flask import Flask
-from flask_cors import CORS
-import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Create Flask app
-app = Flask(__name__)
-
-# Allowed origins
+# Allowed frontend origins
 ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # local frontend
-    "https://vnit-hostel-grievances-36cw.vercel.app"  # deployed frontend
+    "http://localhost:3000",                     # local dev
+    "https://vnit-hostel-grievances-36cw.vercel.app"   # production frontend
 ]
 
-# Configure CORS
-CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGINS}}, supports_credentials=True)
+# Configure CORS for all routes
+CORS(
+    app,
+    resources={r"/*": {"origins": ALLOWED_ORIGINS}},
+    supports_credentials=True
+)
 
-# Import routes
+# Import blueprints
 from app.routes import auth, complaints, admin, worker
 
 # Register blueprints
@@ -38,6 +31,7 @@ app.register_blueprint(complaints.bp)
 app.register_blueprint(admin.bp)
 app.register_blueprint(worker.bp)
 
+# Basic routes
 @app.route('/')
 def home():
     return {'message': 'Complaint Management System API', 'status': 'running'}
@@ -46,6 +40,6 @@ def home():
 def health():
     return {'status': 'healthy'}
 
-if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5002))
-    app.run(host='0.0.0.0', port=port, debug=True)
+# IMPORTANT:
+# Do NOT use app.run() in production.
+# Gunicorn will start the server using: gunicorn app:app
