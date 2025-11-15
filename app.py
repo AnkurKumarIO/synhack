@@ -32,7 +32,7 @@ app.register_blueprint(admin.bp)
 app.register_blueprint(worker.bp)
 
 # Basic routes
-@app.route('/')
+@app.route('/api')
 def home():
     return {'message': 'Complaint Management System API', 'status': 'running'}
 
