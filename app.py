@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Allowed frontend origins
 ALLOWED_ORIGINS = [
     "http://localhost:3000",                     # local dev
-    "https://vnit-hostel-grievances-36cw.vercel.app"   # production frontend
+    "https://vnit-hostel-grievances-frontend.onrender.com"   # production frontend
 ]
 
 # Configure CORS for all routes
