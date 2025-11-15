@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL with /api included
-const API_URL = 'https://vnit-hostel-grievances.onrender.com/api';
+const API_URL = 'https://vnit-hostel-grievances-1.onrender.com';
 
 const api = axios.create({
   baseURL: API_URL,
